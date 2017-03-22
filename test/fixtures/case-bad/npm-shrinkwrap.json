@@ -1,0 +1,25 @@
+{
+  "name": "npm-check-shrinkwrap",
+  "version": "0.0.1",
+  "dependencies": {
+    "colors": {
+      "version": "1.1.1",
+      "from": "colors@1.1.2",
+      "resolved": "https://registry.npmjs.org/colors/-/colors-1.1.2.tgz"
+    },
+    "commander": {
+      "version": "2.9.0",
+      "from": "commander@latest",
+      "resolved": "https://registry.npmjs.org/commander/-/commander-2.9.0.tgz"
+    },
+    "hello": {
+      "version": "3.3.3"
+    },
+    "foo/bar": {
+      "version": "1.0.1"
+    },
+    "foo/baz": {
+      "version": "2.2.2"
+    }
+  }
+}

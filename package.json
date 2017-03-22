@@ -4,7 +4,7 @@
   "description": "Quickly check if contents of node_modules corresponds to npm-shrinkwrap.json",
   "main": "lib/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -R list test/"
   },
   "bin": {
     "npm-check-shrinkwrap": "bin/cli.js"
@@ -23,5 +23,9 @@
     "bluebird": "^3.5.0",
     "colors": "^1.1.2",
     "commander": "^2.9.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }

@@ -1,0 +1,21 @@
+{
+  "exclude": "(^node_modules/)",
+  "linters": {
+    "jshint": {
+      "type": "jshint",
+      "include": "(\\.js$)",
+      "jshint.jshintrc": ".jshintrc"
+    },
+    "whitespace-only": {
+      "type": "text",
+      "exclude": "(\\.json$)",
+      "text.max-line-length": 1000,
+      "severity": {
+        "5": "disabled"
+      }
+    },
+    "merge-conflict": {
+      "type": "merge-conflict"
+    }
+  }
+}

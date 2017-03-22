@@ -1,0 +1,9 @@
+{
+  "project.name": "npm-check-shrinkwrap",
+  "phabricator.uri" : "https://phab.getgrist.com/",
+  "unit.engine": "XUnitCommandTestEngine",
+  "unit.engine.xunit.commands": [
+    "node_modules/.bin/mocha -R xunit --recursive test"
+  ],
+  "load": [ "test/arc-unit-engine/" ]
+}
