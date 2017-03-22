@@ -1,0 +1,27 @@
+{
+  "name": "npm-check-shrinkwrap",
+  "version": "0.0.1",
+  "description": "Quickly check if contents of node_modules corresponds to npm-shrinkwrap.json",
+  "main": "lib/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "npm-check-shrinkwrap": "bin/cli.js"
+  },
+  "keywords": [
+    "npm",
+    "install",
+    "dependencies",
+    "shrinkwrap",
+    "update",
+    "node_modules"
+  ],
+  "author": "Dmitry Sagalovskiy, Grist Labs",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0"
+  }
+}
