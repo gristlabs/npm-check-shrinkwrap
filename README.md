@@ -1,5 +1,8 @@
 # npm-check-shrinkwrap
 
+[![Build Status](https://travis-ci.org/gristlabs/npm-check-shrinkwrap.svg?branch=master)](https://travis-ci.org/gristlabs/npm-check-shrinkwrap)
+[![npm version](https://badge.fury.io/js/npm-check-shrinkwrap.svg)](https://badge.fury.io/js/npm-check-shrinkwrap)
+
 > Quickly check if contents of node_modules correspond to npm-shrinkwrap.json
 
 If you use `npm shrinkwrap`, you may want to check very quickly (e.g. as a build step) whether
