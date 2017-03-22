@@ -6,6 +6,12 @@
   "scripts": {
     "test": "mocha -R list test/"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gristlabs/npm-check-shrinkwrap.git"
+  },
+  "homepage": "https://github.com/gristlabs/npm-check-shrinkwrap",
+  "bugs": "https://github.com/gristlabs/npm-check-shrinkwrap/issues",
   "bin": {
     "npm-check-shrinkwrap": "bin/cli.js"
   },
