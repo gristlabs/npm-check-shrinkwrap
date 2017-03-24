@@ -41,7 +41,8 @@ describe("main", function() {
         "✗ bluebird: 3.5.0 is unwanted",
         "✗ colors: 1.1.2 should be 1.1.1",
         "✗ foo/baz: 2.2.2 is missing",
-        "✗ hello: 3.3.3 is missing",
+        "✗ hello: 3.3.3 (git+https://github.com/foo/hello.git#abcdef1234567890) is missing",
+        "✗ world: 4.4.4 (./somewhere) should be 4.4.4 (git+https://github.com/foo/world.git#abcdef1234567890)",
       ]);
       messages = [];
     })
@@ -62,7 +63,8 @@ describe("main", function() {
         "✓ commander: 2.9.0 matches",
         "✓ foo/bar: 1.0.1 matches",
         "✗ foo/baz: 2.2.2 is missing",
-        "✗ hello: 3.3.3 is missing",
+        "✗ hello: 3.3.3 (git+https://github.com/foo/hello.git#abcdef1234567890) is missing",
+        "✗ world: 4.4.4 (./somewhere) should be 4.4.4 (git+https://github.com/foo/world.git#abcdef1234567890)",
       ]);
       messages = [];
     })
@@ -85,7 +87,8 @@ describe("main", function() {
       assert.deepEqual(messages, [
         "✗ colors: 1.1.2 should be 1.1.1",
         "✗ foo/baz: 2.2.2 is missing",
-        "✗ hello: 3.3.3 is missing",
+        "✗ hello: 3.3.3 (git+https://github.com/foo/hello.git#abcdef1234567890) is missing",
+        "✗ world: 4.4.4 (./somewhere) should be 4.4.4 (git+https://github.com/foo/world.git#abcdef1234567890)",
       ]);
       messages = [];
     })
@@ -93,6 +96,36 @@ describe("main", function() {
     .then(success => {
       assert.isTrue(success);
       assert.deepEqual(messages, []);
+    });
+  });
+
+  it("should generate correct npm install command with --install", function() {
+    let commands = [];
+    let run = (cmd, args) => { commands.push([cmd].concat(args)); return Promise.resolve(0); };
+    return main({chdir: caseBad, all: 0, unwanted: 0, log: collect, run: run, install: 1})
+    .then(success => {
+      assert.isTrue(success);     // With 'install' successful, this is now true.
+      assert.deepEqual(messages, [
+        "✗ colors: 1.1.2 should be 1.1.1",
+        "✗ foo/baz: 2.2.2 is missing",
+        "✗ hello: 3.3.3 (git+https://github.com/foo/hello.git#abcdef1234567890) is missing",
+        "✗ world: 4.4.4 (./somewhere) should be 4.4.4 (git+https://github.com/foo/world.git#abcdef1234567890)",
+        "Running: npm install --no-save colors@1.1.1 foo/baz@2.2.2 git+https://github.com/foo/hello.git#abcdef1234567890 git+https://github.com/foo/world.git#abcdef1234567890"
+      ]);
+      assert.deepEqual(commands, [
+        ['npm', 'install', '--no-save', 'colors@1.1.1', 'foo/baz@2.2.2',
+         'git+https://github.com/foo/hello.git#abcdef1234567890',
+         'git+https://github.com/foo/world.git#abcdef1234567890'
+        ]
+      ]);
+      messages = [];
+      commands = [];
+    })
+    .then(() => main({chdir: caseGood, all: 0, unwanted: 0, log: collect, run: run, install: 1}))
+    .then(success => {
+      assert.isTrue(success);
+      assert.deepEqual(messages, []);
+      assert.deepEqual(commands, []);
     });
   });
 });

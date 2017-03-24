@@ -13,7 +13,12 @@
       "resolved": "https://registry.npmjs.org/commander/-/commander-2.9.0.tgz"
     },
     "hello": {
+      "from": "git+https://github.com/foo/hello.git#abcdef1234567890",
       "version": "3.3.3"
+    },
+    "world": {
+      "from": "git+https://github.com/foo/world.git#abcdef1234567890",
+      "version": "4.4.4"
     },
     "foo/bar": {
       "version": "1.0.1"
