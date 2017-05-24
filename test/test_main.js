@@ -99,6 +99,45 @@ describe("main", function() {
     });
   });
 
+  it("should respect --no-from option", function() {
+    return main({chdir: caseBad, all: false, unwanted: false, from: false, log: collect})
+    .then(success => {
+      assert.isFalse(success);
+      assert.deepEqual(messages, [
+        "✗ colors: 1.1.2 should be 1.1.1",
+        "✗ foo/baz: 2.2.2 is missing",
+        "✗ hello: 3.3.3 is missing",
+      ]);
+      messages = [];
+    })
+    .then(() => main({chdir: caseGood, all: false, unwanted: false, log: collect}))
+    .then(success => {
+      assert.isTrue(success);
+      assert.deepEqual(messages, []);
+    });
+  });
+
+  it("should --no-from option works with --all", function() {
+    return main({chdir: caseBad, all: true, unwanted: false, from: false, log: collect})
+    .then(success => {
+      assert.isFalse(success);
+      assert.deepEqual(messages, [
+        "✗ colors: 1.1.2 should be 1.1.1",
+        "✓ commander: 2.9.0 matches",
+        "✓ foo/bar: 1.0.1 matches",
+        "✗ foo/baz: 2.2.2 is missing",
+        "✗ hello: 3.3.3 is missing",
+        "✓ world: 4.4.4 matches",
+      ]);
+      messages = [];
+    })
+    .then(() => main({chdir: caseGood, all: false, unwanted: false, log: collect}))
+    .then(success => {
+      assert.isTrue(success);
+      assert.deepEqual(messages, []);
+    });
+  });
+
   it("should generate correct npm install command with --install", function() {
     let commands = [];
     let run = (cmd, args) => { commands.push([cmd].concat(args)); return Promise.resolve(0); };

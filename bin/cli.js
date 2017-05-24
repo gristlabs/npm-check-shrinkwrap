@@ -14,6 +14,7 @@ commander
 .option("-v, --all", "Print all modules, not only the problem ones", false)
 .option("--no-unwanted", "Ignore node_modules not listed in npm-shrinkwrap.json", false)
 .option("--install", "Automatically run 'npm install --no-save' for all missing modules", false)
+.option("--no-from", "Ignores differences between package sources", false)
 .option("--no-color", "Suppress color output even when the output is to a TTY", false)
 .parse(process.argv);
 
