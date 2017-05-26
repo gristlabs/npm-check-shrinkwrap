@@ -42,6 +42,7 @@ describe("main", function() {
         "✗ colors: 1.1.2 should be 1.1.1",
         "✗ foo/baz: 2.2.2 is missing",
         "✗ hello: 3.3.3 (git+https://github.com/foo/hello.git#abcdef1234567890) is missing",
+        "✗ missing-from: 3.14.15 should be 3.14.15 (git+https://github.com/foo/missing-from.git#abcdef1234567890)",
         "✗ world: 4.4.4 (./somewhere) should be 4.4.4 (git+https://github.com/foo/world.git#abcdef1234567890)",
       ]);
       messages = [];
@@ -64,6 +65,7 @@ describe("main", function() {
         "✓ foo/bar: 1.0.1 matches",
         "✗ foo/baz: 2.2.2 is missing",
         "✗ hello: 3.3.3 (git+https://github.com/foo/hello.git#abcdef1234567890) is missing",
+        "✗ missing-from: 3.14.15 should be 3.14.15 (git+https://github.com/foo/missing-from.git#abcdef1234567890)",
         "✗ world: 4.4.4 (./somewhere) should be 4.4.4 (git+https://github.com/foo/world.git#abcdef1234567890)",
       ]);
       messages = [];
@@ -88,6 +90,7 @@ describe("main", function() {
         "✗ colors: 1.1.2 should be 1.1.1",
         "✗ foo/baz: 2.2.2 is missing",
         "✗ hello: 3.3.3 (git+https://github.com/foo/hello.git#abcdef1234567890) is missing",
+        "✗ missing-from: 3.14.15 should be 3.14.15 (git+https://github.com/foo/missing-from.git#abcdef1234567890)",
         "✗ world: 4.4.4 (./somewhere) should be 4.4.4 (git+https://github.com/foo/world.git#abcdef1234567890)",
       ]);
       messages = [];
@@ -117,7 +120,7 @@ describe("main", function() {
     });
   });
 
-  it("should --no-from option works with --all", function() {
+  it("should respect both --no-from and --all", function() {
     return main({chdir: caseBad, all: true, unwanted: false, from: false, log: collect})
     .then(success => {
       assert.isFalse(success);
@@ -127,6 +130,7 @@ describe("main", function() {
         "✓ foo/bar: 1.0.1 matches",
         "✗ foo/baz: 2.2.2 is missing",
         "✗ hello: 3.3.3 is missing",
+        "✓ missing-from: 3.14.15 matches",
         "✓ world: 4.4.4 matches",
       ]);
       messages = [];
@@ -148,12 +152,14 @@ describe("main", function() {
         "✗ colors: 1.1.2 should be 1.1.1",
         "✗ foo/baz: 2.2.2 is missing",
         "✗ hello: 3.3.3 (git+https://github.com/foo/hello.git#abcdef1234567890) is missing",
+        "✗ missing-from: 3.14.15 should be 3.14.15 (git+https://github.com/foo/missing-from.git#abcdef1234567890)",
         "✗ world: 4.4.4 (./somewhere) should be 4.4.4 (git+https://github.com/foo/world.git#abcdef1234567890)",
-        "Running: npm install --no-save colors@1.1.1 foo/baz@2.2.2 git+https://github.com/foo/hello.git#abcdef1234567890 git+https://github.com/foo/world.git#abcdef1234567890"
+        "Running: npm install --no-save colors@1.1.1 foo/baz@2.2.2 git+https://github.com/foo/hello.git#abcdef1234567890 git+https://github.com/foo/missing-from.git#abcdef1234567890 git+https://github.com/foo/world.git#abcdef1234567890",
       ]);
       assert.deepEqual(commands, [
         ['npm', 'install', '--no-save', 'colors@1.1.1', 'foo/baz@2.2.2',
          'git+https://github.com/foo/hello.git#abcdef1234567890',
+         'git+https://github.com/foo/missing-from.git#abcdef1234567890',
          'git+https://github.com/foo/world.git#abcdef1234567890'
         ]
       ]);

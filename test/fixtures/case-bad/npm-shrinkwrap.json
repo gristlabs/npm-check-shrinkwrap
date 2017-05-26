@@ -25,6 +25,10 @@
     },
     "foo/baz": {
       "version": "2.2.2"
+    },
+    "missing-from": {
+      "from": "git+https://github.com/foo/missing-from.git#abcdef1234567890",
+      "version": "3.14.15"
     }
   }
 }
