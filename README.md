@@ -39,3 +39,6 @@ frustratingly fetch from the network ignoring your archives.)
 If you have unwanted modules, you can either update your `npm-shrinkwrap.json` file (run `npm
 shrinkwrap --dev`), or you can delete unwanted packages from `node_modules/`. You can suppress the
 output of unwanted modules with `--no-unwanted` option.
+
+With `--no-from`, only the version is considered when comparing `npm-shrinkwrap.json` and the
+installed module. This means that a package that comes from a different source will be accepted.
