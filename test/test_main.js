@@ -154,13 +154,13 @@ describe("main", function() {
         "✗ hello: 3.3.3 (git+https://github.com/foo/hello.git#abcdef1234567890) is missing",
         "✗ missing-from: 3.14.15 should be 3.14.15 (git+https://github.com/foo/missing-from.git#abcdef1234567890)",
         "✗ world: 4.4.4 (./somewhere) should be 4.4.4 (git+https://github.com/foo/world.git#abcdef1234567890)",
-        "Running: npm install --no-save colors@1.1.1 foo/baz@2.2.2 git+https://github.com/foo/hello.git#abcdef1234567890 git+https://github.com/foo/missing-from.git#abcdef1234567890 git+https://github.com/foo/world.git#abcdef1234567890",
+        "Running: npm install --no-save colors@1.1.1 foo/baz@2.2.2 git+https://github.com/foo/hello.git#abcdef1234567890 git+https://github.com/foo/missing-from.git#abcdef1234567890 ./local/world-2.9.0.tgz",
       ]);
       assert.deepEqual(commands, [
         ['npm', 'install', '--no-save', 'colors@1.1.1', 'foo/baz@2.2.2',
          'git+https://github.com/foo/hello.git#abcdef1234567890',
          'git+https://github.com/foo/missing-from.git#abcdef1234567890',
-         'git+https://github.com/foo/world.git#abcdef1234567890'
+         './local/world-2.9.0.tgz'
         ]
       ]);
       messages = [];
